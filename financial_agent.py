@@ -12,7 +12,7 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 web_search_agent=Agent(
     name="Web Search Agent",
     role="Search the web for the information",
-    model=Groq(id="Gemma2-9b-It"),
+    model=Groq(id="llama-3.3-70b-specdec"),
     tools=[DuckDuckGo()],
     instructions=["Alway include sources"],
     show_tools_calls=True,
@@ -23,7 +23,7 @@ web_search_agent=Agent(
 ## Financial agent
 finance_agent=Agent(
     name="Finance AI Agent",
-    model=Groq(id="Gemma2-9b-It"),
+    model=Groq(id="llama-3.3-70b-specdec"),
     tools=[
         YFinanceTools(stock_price=True, analyst_recommendations=True, stock_fundamentals=True,
                       company_news=True),
@@ -35,7 +35,7 @@ finance_agent=Agent(
 )
 
 multi_ai_agent=Agent(
-    model=Groq(id="Gemma2-9b-It"),
+    model=Groq(id="llama-3.3-70b-specdec"),
     team=[web_search_agent,finance_agent],
     instructions=["Always include sources","Use table to display the data"],
     show_tool_calls=True,
